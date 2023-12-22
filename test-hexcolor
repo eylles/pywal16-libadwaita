@@ -69,8 +69,10 @@ lighten () {
     rgbcol=$(hexToRgb "$color")
     colout=""
     i=0
+    # modifier=$(( 255 * amount / 100 ))
+    modifier=$(awk -v am="$amount" 'BEGIN { print int(( 255 * am ) / 100 ) }')
     for colbit in $(split_list "$rgbcol" ","); do
-        modbit=$(( colbit + ( 255 * amount / 100 ) ))
+        modbit=$(( colbit + modifier ))
         # printf '%s: %d\n' "$i" "$modbit"
         # printf '%s: %02x\n' "$i" "$modbit"
         colout="${colout}"$(printf '%02x' "$modbit")
@@ -85,8 +87,9 @@ darken () {
     rgbcol=$(hexToRgb "$color")
     colout=""
     i=0
+    modifier=$(awk -v am="$amount" 'BEGIN { print int(( 255 * am ) / 100 ) }')
     for colbit in $(split_list "$rgbcol" ","); do
-        modbit=$(( colbit - ( 255 * amount / 100 ) ))
+        modbit=$(( colbit - modifier ))
         # printf '%s: %d\n'   "$i" "$modbit"
         # printf '%s: %02x\n' "$i" "$modbit"
         colout="${colout}"$(printf '%02x' "$modbit")
