@@ -1,23 +1,9 @@
 # Colorizing GTK and QT with pywal
 
-<img src="./screenshots/gtk_wf_2.png" alt="img" align="left" width="400px">
-
-
-<img src="./screenshots/kvantum_3.png" alt="img" align="right" width="400px">
-
-
-<img src="./screenshots/gradience_4.png" alt="img" align="left" width="400px">
-
-
-<img src="./screenshots/primehack_1.png" alt="img" align="right" width="400px">
-
-
-
-
-
-
-
-
+![gtk_wf_2]("./screenshots/gtk_wf_2.png")
+![kvantum_3]("./screenshots/kvantum_3.png")
+![gradience_4]("./screenshots/gradience_4.png")
+![primehack_1]("./screenshots/primehack_1.png")
 
 
 
