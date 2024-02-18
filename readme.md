@@ -6,6 +6,15 @@
 <img src="./screenshots/primehack_1.png" alt="img" align="right" width="400px">
 
 
+
+
+
+
+
+
+
+
+
 # How to use
 
 this repo contains 3 templates for use with pywal16:  
