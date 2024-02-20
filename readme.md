@@ -22,7 +22,7 @@ then copy the built templates to the corresponding directories like this:
 ```sh
 cp -f "${HOME}"/.cache/wal/pywal.json "${HOME}"/.var/app/com.github.GradienceTeam.Gradience/config/presets/user/pywal.json
 
-mkdir -p "${HOME}"/.config/Kvantum/pywa
+mkdir -p "${HOME}"/.config/Kvantum/pywal
 cp "${HOME}"/.cache/wal/pywal.kvconfig "${HOME}"/.config/Kvantum/pywal/pywal.kvconfig
 cp "${HOME}"/.cache/wal/pywal.svg "${HOME}"/.config/Kvantum/pywal/pywal.svg
 ```
