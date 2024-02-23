@@ -18,6 +18,9 @@ this repo contains 3 templates for use with pywal16:
 after installing pywal16 and the desired backends, copy the templates into the user template
 directory `"${HOME}"/.config/wal/templates/` run the wal command to generate or use your desired theme
 
+you can easy install the templates with the provided makefile
+
+
 then copy the built templates to the corresponding directories like this:
 ```sh
 cp -f "${HOME}"/.cache/wal/pywal.json "${HOME}"/.var/app/com.github.GradienceTeam.Gradience/config/presets/user/pywal.json
