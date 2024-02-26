@@ -30,3 +30,9 @@ cp "${HOME}"/.cache/wal/pywal.kvconfig "${HOME}"/.config/Kvantum/pywal/pywal.kvc
 cp "${HOME}"/.cache/wal/pywal.svg "${HOME}"/.config/Kvantum/pywal/pywal.svg
 ```
 
+alternatively use the provided script, apply-theme.sh
+
+TODO:    
+- write a python script to get colors from pywal and adjust them without a template
+- complete the build-kvantum.py script so that the kvantum theme can be built programatically without a template
+- turn the kvantum script into a proper gradience plugin
