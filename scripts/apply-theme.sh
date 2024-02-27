@@ -17,9 +17,6 @@ theme=pywal
 
 settheme=0
 
-# copy gradience theme
-cp -f "$wal_template_dir/${template}.json" "${gradience_dir}/${theme}.json"
-
 _help () {
     printf 'usage: %s [OPTION]\n' "$myname"
     printf 'options:\n'
@@ -51,6 +48,9 @@ while getopts "n:t:sh" opt; do case "${opt}" in
     ;;
 esac done
 
+
+# copy gradience theme
+cp -f "$wal_template_dir/${template}.json" "${gradience_dir}/${theme}.json"
 
 # kvantum theme dir
 kvtheme_dir="$kvantum_dir/${theme}"
