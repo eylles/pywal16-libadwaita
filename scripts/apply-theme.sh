@@ -50,7 +50,7 @@ esac done
 
 
 # copy gradience theme
-cp -f "$wal_template_dir/${template}.json" "${gradience_dir}/${theme}.json"
+ln -s "$wal_template_dir/${template}.json" "${gradience_dir}/${theme}.json"
 
 # kvantum theme dir
 kvtheme_dir="$kvantum_dir/${theme}"
@@ -61,8 +61,8 @@ if [ -d "$kvtheme_dir" ]; then
 fi
 
 # copy kvantum theme
-cp -f "$wal_template_dir/${template}.kvconfig" "$kvtheme_dir/${theme}.kvconfig"
-cp -f "$wal_template_dir/${template}.svg" "$kvtheme_dir/${theme}.svg"
+ln -s "$wal_template_dir/${template}.kvconfig" "$kvtheme_dir/${theme}.kvconfig"
+ln -s "$wal_template_dir/${template}.svg" "$kvtheme_dir/${theme}.svg"
 
 # do we actually set the themes?
 if [ "$settheme" -eq 1 ]; then
