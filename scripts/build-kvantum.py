@@ -10,24 +10,6 @@ import os
 # functions #
 #############
 
-def char_pos_find(string, char):
-    """
-    return type: int
-    description:
-      retuns "-1" when char not found
-      otherwise will return the position
-    """
-    exists = 0
-    for i in range(0, len(string)):
-        if string[i] == char:
-            exists = 1
-            break
-    if exists == 0:
-        return -1
-    else:
-        return i
-
-
 def data_sub_link(dictio, key, value):
     """
     return type: void
@@ -36,7 +18,7 @@ def data_sub_link(dictio, key, value):
       with the color string value of
       the refferenced key
     """
-    if char_pos_find(value, "@") > -1:
+    if value.find("@") > -1:
         index_str = value[1:]
         dictio[key] = dictio[index_str]
         if args.debug:
