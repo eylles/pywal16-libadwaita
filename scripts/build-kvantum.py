@@ -25,6 +25,28 @@ def data_sub_link(dictio, key, value):
             print("{k}: {v}".format(k=key, v=dictio[key]))
 
 
+def data_rgb_to_hex(dictio, key, value):
+    """
+    return type: void
+    description:
+      replace the "rgba()" values
+      with the correspinding rgb hex string
+    """
+    if value.find("rgb") > -1:
+        oparen = value.find("(")
+        cparen = value.find(")")
+        # index_str = value[1:]
+        vallist = value[oparen+1:cparen].split(",")
+        r = int(vallist[0])
+        g = int(vallist[1])
+        b = int(vallist[2])
+        res = "#{0:02x}{1:02x}{2:02x}".format(r, g, b)
+        dictio[key] = res
+        if args.debug:
+            print("{k}: {v}".format(
+                k=key, v=dictio[key]))
+
+
 ########
 # Main #
 ########
@@ -56,6 +78,8 @@ with open(args.file) as json_file:
 # correct data
 for keys, values in data["variables"].items():
     data_sub_link(data["variables"], keys, values)
+for keys, values in data["variables"].items():
+    data_rgb_to_hex(data["variables"], keys, values)
 
 
 if args.debug:
