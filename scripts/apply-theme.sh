@@ -55,8 +55,8 @@ ln -s "$wal_template_dir/${template}.json" "${gradience_dir}/${theme}.json"
 # kvantum theme dir
 kvtheme_dir="$kvantum_dir/${theme}"
 
-# check if kvantum theme directory exists
-if [ -d "$kvtheme_dir" ]; then
+# check if kvantum theme directory exists, if it doesn't, create it
+if [ ! -d "$kvtheme_dir" ]; then
   mkdir -p "$kvtheme_dir"
 fi
 
