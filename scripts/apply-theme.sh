@@ -3,9 +3,9 @@
 myname="${0##*/}"
 
 gradience_dir="${HOME}/.var/app/com.github.GradienceTeam.Gradience/config/presets/user"
-kvantum_dir="${XDG_CONFIG_HOME:-~/.config}/Kvantum"
+kvantum_dir="${HOME}/.config/Kvantum"
 
-wal_template_dir="${XDG_CACHE_HOME:-~/.cache}/wal"
+wal_template_dir="${HOME}/.cache/wal"
 
 # template name
 # default: pywal
@@ -50,19 +50,23 @@ esac done
 
 
 # copy gradience theme
-ln -s "$wal_template_dir/${template}.json" "${gradience_dir}/${theme}.json"
+if [ ! -L "${gradience_dir}/${theme}.json" ]; then
+  ln -s "$wal_template_dir/${template}.json" "${gradience_dir}/${theme}.json"
+fi
 
 # kvantum theme dir
 kvtheme_dir="$kvantum_dir/${theme}"
 
-# check if kvantum theme directory exists, if it doesn't, create it
+# check if kvantum theme directory exists
 if [ ! -d "$kvtheme_dir" ]; then
   mkdir -p "$kvtheme_dir"
 fi
 
 # copy kvantum theme
-ln -s "$wal_template_dir/${template}.kvconfig" "$kvtheme_dir/${theme}.kvconfig"
-ln -s "$wal_template_dir/${template}.svg" "$kvtheme_dir/${theme}.svg"
+if [ ! -L "$kvtheme_dir/${theme}.kvconfig" ] && [ ! -L "$kvtheme_dir/${theme}.svg" ]; then
+  ln -s "$wal_template_dir/${template}.kvconfig" "$kvtheme_dir/${theme}.kvconfig"
+  ln -s "$wal_template_dir/${template}.svg" "$kvtheme_dir/${theme}.svg"
+fi
 
 # do we actually set the themes?
 if [ "$settheme" -eq 1 ]; then
