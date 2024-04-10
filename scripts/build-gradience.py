@@ -63,6 +63,8 @@ parser = argparse.ArgumentParser()
 # Adding optional argument
 parser.add_argument("-d", "--debug", action='store_true',
                     help="Show Debug Output")
+parser.add_argument("-n", "--dry-run", dest='dryrun', action='store_true',
+                    help="do not write output files")
 
 # Read arguments from command line
 args = parser.parse_args()
@@ -216,8 +218,10 @@ gradience_theme = {
     "plugins": {}
 }
 
-# for keys, values in gradience_theme["variables"].items():
-#     print("{key: >24}: {value}".format(key=keys, value=values))
+if args.debug:
+    print("gradience theme values")
+    for keys, values in gradience_theme["variables"].items():
+        print("{key: >24}: {value}".format(key=keys, value=values))
 
 home_dir = os.environ.get('HOME', '/home/{}'.format(username))
 gr_dir = ".var/app/com.github.GradienceTeam.Gradience/config/presets/user"
@@ -225,7 +229,11 @@ out_dir = "{}/{}".format(home_dir, gr_dir)
 theme_file = "pywal.json"
 o_file = "{d}/{f}".format(d=out_dir, f=theme_file)
 
-# print(o_file)
-
-with open(o_file, "w") as outfile:
-    json.dump(gradience_theme, outfile, indent=4)
+if not args.dryrun:
+    if args.debug:
+        print("writing {}".format(o_file))
+    with open(o_file, "w") as outfile:
+        json.dump(gradience_theme, outfile, indent=4)
+else:
+    if args.debug:
+        print("dry run mode, no file written")
