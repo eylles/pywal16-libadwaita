@@ -65,6 +65,8 @@ parser.add_argument("-d", "--debug", action='store_true',
                     help="Show Debug Output")
 parser.add_argument("-n", "--dry-run", dest='dryrun', action='store_true',
                     help="do not write output files")
+parser.add_argument("--pwfox", dest='pwfox', action='store_true',
+                    help="pywalfox matching colors")
 
 # Read arguments from command line
 args = parser.parse_args()
@@ -105,6 +107,48 @@ col = {
     "col15": data["colors"]["color15"],
 }
 
+if args.pwfox:
+    pwf_l = 1.25
+    pwf_e_l = 1.85
+    pwf_e_e_l = 2.15
+
+    bgt = hex_to_rgb(col["col0"])
+    # print("bg hex: {h} rgb: {t}".format(h=col["col0"], t=bgt))
+    # print(bgtuple[0])
+    # print(bgtuple[1])
+    # print(bgtuple[2])
+    bg_l = []
+    bg_l.append(min((max(0, int(bgt[0] + (bgt[0] * pwf_l)))), 255))
+    bg_l.append(min((max(0, int(bgt[1] + (bgt[1] * pwf_l)))), 255))
+    bg_l.append(min((max(0, int(bgt[2] + (bgt[2] * pwf_l)))), 255))
+    bg_e_l = []
+    bg_e_l.append(min((max(0, int(bgt[0] + (bgt[0] * pwf_e_l)))), 255))
+    bg_e_l.append(min((max(0, int(bgt[1] + (bgt[1] * pwf_e_l)))), 255))
+    bg_e_l.append(min((max(0, int(bgt[2] + (bgt[2] * pwf_e_l)))), 255))
+    bg_e_e_l = []
+    bg_e_e_l.append(min((max(0, int(bgt[0] + (bgt[0] * pwf_e_e_l)))), 255))
+    bg_e_e_l.append(min((max(0, int(bgt[1] + (bgt[1] * pwf_e_e_l)))), 255))
+    bg_e_e_l.append(min((max(0, int(bgt[2] + (bgt[2] * pwf_e_e_l)))), 255))
+    bglight = rgb_to_hex(bg_l)
+    bgexlight = rgb_to_hex(bg_e_l)
+    bgeexlight = rgb_to_hex(bg_e_e_l)
+    # print(bg_l)
+    # print(bg_e_l)
+    # print("bg l: {}".format(rgb_to_hex(bg_l)))
+    # print("bg el: {}".format(rgb_to_hex(bg_e_l)))
+    ec1 = bglight
+    ec2 = bgexlight
+    ec3 = bgeexlight
+else:
+    ec1 = lighten_color(col["col0"], 1)
+    ec2 = lighten_color(col["col0"], 2)
+    ec3 = lighten_color(col["col0"], 3)
+
+
+col["cole1"] = ec1
+col["cole2"] = ec2
+col["cole3"] = ec3
+
 gradience_theme = {
     "name": "pywal",
     "variables": {
@@ -125,26 +169,26 @@ gradience_theme = {
         "error_fg_color": col["col15"],
         "window_bg_color": col["col0"],
         "window_fg_color": col["col15"],
-        "view_bg_color": lighten_color(col["col0"], 1),
+        "view_bg_color": col["cole1"],
         "view_fg_color": col["col15"],
         "headerbar_bg_color": col["col0"],
         "headerbar_fg_color": col["col15"],
-        "headerbar_border_color": lighten_color(col["col0"], 3),
+        "headerbar_border_color": col["cole3"],
         "headerbar_backdrop_color": col["col4"],
-        "headerbar_shade_color": lighten_color(col["col0"], 2),
-        "card_bg_color": lighten_color(col["col0"], 2),
+        "headerbar_shade_color": col["cole2"],
+        "card_bg_color": col["cole2"],
         "card_fg_color": col["col15"],
-        "card_shade_color": lighten_color(col["col0"], 1),
+        "card_shade_color": col["cole1"],
         "dialog_bg_color": col["col0"],
         "dialog_fg_color": col["col15"],
         "popover_bg_color": col["col0"],
         "popover_fg_color": col["col15"],
-        "shade_color": lighten_color(col["col0"], 3),
+        "shade_color": col["cole3"],
         "scrollbar_outline_color": col["col12"],
         "sidebar_bg_color": col["col0"],
         "sidebar_fg_color": col["col15"],
-        "sidebar_backdrop_color": lighten_color(col["col0"], 1),
-        "sidebar_shade_color": lighten_color(col["col0"], 2),
+        "sidebar_backdrop_color": col["cole1"],
+        "sidebar_shade_color": col["cole2"],
     },
     "palette": {
         "blue_": {
