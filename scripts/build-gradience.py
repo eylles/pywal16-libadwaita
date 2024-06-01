@@ -11,17 +11,17 @@ import os
 #############
 
 
-def hex_to_rgb(color):
+def hex_to_rgb(color: str) -> tuple:
     """Convert a hex color to rgb."""
     return tuple(bytes.fromhex(color.strip("#")))
 
 
-def rgb_to_hex(color):
+def rgb_to_hex(color: tuple) -> str:
     """Convert an rgb color to hex."""
     return "#%02x%02x%02x" % (*color,)
 
 
-def darken_color(color, amount):
+def darken_color(color: str, amount: int) -> str:
     """Darken a hex color."""
     # color = [int(col * (1 - amount)) for col in hex_to_rgb(color)]
     ctup = hex_to_rgb(color)
@@ -31,7 +31,7 @@ def darken_color(color, amount):
     return rgb_to_hex(nctup)
 
 
-def lighten_color(color, amount):
+def lighten_color(color: str, amount: int) -> str:
     """Lighten a hex color."""
     # color = [int(col + (255 - col) * amount) for col in hex_to_rgb(color)]
     ctup = hex_to_rgb(color)
@@ -41,7 +41,7 @@ def lighten_color(color, amount):
     return rgb_to_hex(nctup)
 
 
-def blend_color(color, color2):
+def blend_color(color: str, color2: str) -> str:
     """Blend two colors together."""
     r1, g1, b1 = hex_to_rgb(color)
     r2, g2, b2 = hex_to_rgb(color2)
