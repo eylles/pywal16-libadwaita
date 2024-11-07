@@ -67,6 +67,8 @@ parser.add_argument("-n", "--dry-run", dest='dryrun', action='store_true',
                     help="do not write output files")
 parser.add_argument("--pwfox", dest='pwfox', action='store_true',
                     help="pywalfox matching colors")
+parser.add_argument("--bar-height", dest="height",
+                    help="header bar height")
 
 # Read arguments from command line
 args = parser.parse_args()
@@ -148,6 +150,11 @@ else:
 col["cole1"] = ec1
 col["cole2"] = ec2
 col["cole3"] = ec3
+
+# additional css
+css = ""
+if args.height:
+    css = "headerbar {{\n  min-height: {h}px;\n}}".format(h=args.height)
 
 gradience_theme = {
     "name": "pywal",
@@ -256,8 +263,8 @@ gradience_theme = {
         }
     },
     "custom_css": {
-        "gtk4": "",
-        "gtk3": ""
+        "gtk4": css,
+        "gtk3": css,
     },
     "plugins": {}
 }
