@@ -152,7 +152,7 @@ col["cole2"] = ec2
 col["cole3"] = ec3
 
 # additional css
-css = ""
+css: str = ""
 if args.height:
     css = "headerbar {{\n  min-height: {h}px;\n}}".format(h=args.height)
 
