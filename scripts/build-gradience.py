@@ -156,7 +156,7 @@ css: str = ""
 if args.height:
     css = "headerbar {{\n  min-height: {h}px;\n}}".format(h=args.height)
 
-gradience_theme = {
+gradience_theme: dict = {
     "name": "pywal",
     "variables": {
         "accent_color": col["col12"],
