@@ -155,8 +155,23 @@ col["cole3"] = ec3
 
 # additional css
 css: str = ""
+c: str = "\n"
+c = c + "window.background.chromium {{\n"
+c = c + "  background-color: {bgl};\n"
+c = c + "}}\n"
+c = c + "window.background.chromium menubar {{\n"
+c = c + "  background-color: {bg};\n"
+c = c + "}}\n"
+c = c + "window.background.chromium headerbar {{\n"
+c = c + "  background-color: {bg};\n"
+c = c + "}}\n"
+
+c = c.format(bgl=col["cole3"], bg=col["col0"])
+css = css + c
+
 if args.height:
-    css = "headerbar {{\n  min-height: {h}px;\n}}".format(h=args.height)
+    h = "\nheaderbar {{\n  min-height: {h}px;\n}}".format(h=args.height)
+    css = css + h
 
 # buttons
 b: str = ""
