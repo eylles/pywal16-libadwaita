@@ -165,8 +165,17 @@ c = c + "}}\n"
 c = c + "window.background.chromium headerbar {{\n"
 c = c + "  background-color: {bg};\n"
 c = c + "}}\n"
+c = c + "tooltip.background {{\n"
+c = c + "  background-color: alpha({bg}, 0.8);\n"
+c = c + "  border: 1px solid alpha({bc}, 0.6);"
+c = c + "  border-radius: 8px;\n"
+c = c + "}}\n"
+c = c + "tooltip decoration, tooltip *, tooltip {{\n"
+c = c + "  background-color: alpha({bg}, 0.8);\n"
+c = c + "  border-radius: 8px;\n"
+c = c + "}}\n"
 
-c = c.format(bgl=col["cole3"], bg=col["col0"])
+c = c.format(bgl=col["cole3"], bg=col["col0"], bc=col["col8"])
 css = css + c
 
 if args.height:
