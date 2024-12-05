@@ -158,12 +158,18 @@ css: str = ""
 c: str = "\n"
 c = c + "window.background.chromium {{\n"
 c = c + "  background-color: {bgl};\n"
+c = c + "  color: {ac};\n"
+c = c + "  border: none 0px;\n"
 c = c + "}}\n"
 c = c + "window.background.chromium menubar {{\n"
 c = c + "  background-color: {bg};\n"
 c = c + "}}\n"
 c = c + "window.background.chromium headerbar {{\n"
 c = c + "  background-color: {bg};\n"
+c = c + "}}\n"
+c = c + "menu.chromium {{\n"
+c = c + "  background-color: {bg};\n"
+c = c + "  color: {fg};\n"
 c = c + "}}\n"
 c = c + "tooltip.background {{\n"
 c = c + "  background-color: alpha({bg}, 0.8);\n"
@@ -175,7 +181,9 @@ c = c + "  background-color: alpha({bg}, 0.8);\n"
 c = c + "  border-radius: 8px;\n"
 c = c + "}}\n"
 
-c = c.format(bgl=col["cole3"], bg=col["col0"], bc=col["col8"])
+
+c = c.format(bgl=col["cole3"], bg=col["col0"], bgm=col["cole1"],
+             bc=col["col8"], fg=col["col15"], ac=col["col12"])
 css = css + c
 
 if args.height:
