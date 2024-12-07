@@ -191,56 +191,98 @@ if args.height:
     css = css + h
 
 # buttons
-b: str = ""
+b_gtk3: str = ""
+b_gtk4: str = ""
 if args.buttons:
     hover: str = lighten_color(col["col12"], 10)
     b: str = "\n\n"
     if args.buttons == "fill":
-        b = b + "windowcontrols > button {{\n"
-        b = b + "  color: transparent;\n"
-        b = b + "  min-width: 2px;\n"
-        b = b + "  min-height: 2px;\n"
-        b = b + "  border-radius: 100%;\n"
-        b = b + "  padding: 0;\n"
-        b = b + "  margin: 0 5px;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button > image {{\n"
-        b = b + "  padding: 0;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "button.titlebutton.close,\n"
-        b = b + "windowcontrols > button.close {{\n"
-        b = b + "  background-color: {c};\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "button.titlebutton.close:hover,\n"
-        b = b + "windowcontrols > button.close:hover {{\n"
-        b = b + "  color: {h};\n"
-        b = b + "  opacity: 0.8;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "button.titlebutton.maximize,\n"
-        b = b + "windowcontrols > button.maximize {{\n"
-        b = b + "  background-color: {c};\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "button.titlebutton.maximize:hover,\n"
-        b = b + "windowcontrols > button.maximize:hover {{\n"
-        b = b + "  color: {h};\n"
-        b = b + "  opacity: 0.8;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "button.titlebutton.minimize,\n"
-        b = b + "windowcontrols > button.minimize {{\n"
-        b = b + "  background-color: {c};\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "button.titlebutton.minimize:hover,\n"
-        b = b + "windowcontrols > button.minimize:hover {{\n"
-        b = b + "  color: {h};\n"
-        b = b + "  opacity: 0.8;\n"
-        b = b + "}}\n"
+        b_gtk3 = """
+
+/* GTK3 */
+button.titlebutton {
+    color: transparent;
+    min-width: 2px;
+    min-height: 2px;
+    border-radius: 100%;
+    padding: 0;
+    margin: 0 5px;
+    background-color: transparent;
+    border: none;
+}
+
+button.titlebutton:hover {
+    background-color: {h};
+    opacity: 0.8;
+}
+
+button.titlebutton image {
+    padding: 0;
+}
+
+button.titlebutton.close,
+button.titlebutton.maximize,
+button.titlebutton.minimize {
+    background-color: {c};
+    border: none;
+}
+
+button.titlebutton.close:hover,
+button.titlebutton.maximize:hover,
+button.titlebutton.minimize:hover {
+    background-color: {h};
+    opacity: 0.8;
+}
+"""
+        b_gtk4 = """
+
+/* GTK4 */
+windowcontrols > button {{
+    color: transparent;
+    min-width: 2px;
+    min-height: 2px;
+    border-radius: 100%;
+    padding: 0;
+    margin: 0 5px;
+}}
+
+windowcontrols > button > image {{
+    padding: 0;
+}}
+
+button.titlebutton.close,
+windowcontrols > button.close {{
+    background-color: {c};
+}}
+
+button.titlebutton.close:hover,
+windowcontrols > button.close:hover {{
+    background-color: {h};
+    opacity: 0.8;
+}}
+
+button.titlebutton.maximize,
+windowcontrols > button.maximize {{
+    background-color: {c};
+}}
+
+button.titlebutton.maximize:hover,
+windowcontrols > button.maximize:hover {{
+    background-color: {h};
+    opacity: 0.8;
+}}
+
+button.titlebutton.minimize,
+windowcontrols > button.minimize {{
+    background-color: {c};
+}}
+
+button.titlebutton.minimize:hover,
+windowcontrols > button.minimize:hover {{
+    background-color: {h};
+    opacity: 0.8;
+}}
+"""
     if args.buttons == "asset":
         b = b + "headerbar button:not(.close):not(.maximize):not(.minimize) {{\n"
         b = b + "  margin-top: 4px;\n"
@@ -409,9 +451,12 @@ if args.buttons:
         b = b + "  background-color: transparent;\n"
         b = b + "}}\n"
 
-    b = b.format(c=col["col12"], h=hover)
+    # b = b.format(c=col["col12"], h=hover)
+    b_gtk3 = b_gtk3.format(c=col["col12"], h=hover)
+    b_gtk4 = b_gtk4.format(c=col["col12"], h=hover)
 
-css = css + b
+css3 = css + b_gtk3
+css4 = css + b_gtk4
 
 gradience_theme: dict = {
     "name": "pywal",
@@ -520,8 +565,8 @@ gradience_theme: dict = {
         }
     },
     "custom_css": {
-        "gtk4": css,
-        "gtk3": css,
+        "gtk4": css3,
+        "gtk3": css4,
     },
     "plugins": {}
 }
