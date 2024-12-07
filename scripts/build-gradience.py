@@ -289,9 +289,14 @@ windowcontrols > button.minimize:hover {{
         b_gtk3 = """
 
 button.titlebutton:not(.appmenu) {
-  min-width: 20px;
-  min-height: 20px;
-  padding: 0;
+  min-width: 26px;
+  min-height: 26px;
+  padding: 4;
+}
+
+button.titlebutton {
+  margin: 4px;
+  border: none;
 }
 
 button.close.titlebutton:not(.appmenu),
@@ -310,51 +315,116 @@ button.minimize.titlebutton:not(.appmenu) {
 button.close.titlebutton:not(.appmenu) > image,
 button.maximize.titlebutton:not(.appmenu) > image,
 button.minimize.titlebutton:not(.appmenu) > image {
-  opacity: 0;
 }
 
 button.maximize.titlebutton:hover:not(.appmenu),
 button.minimize.titlebutton:hover:not(.appmenu) {
-  background-color: @accent_bg_color;
-  box-shadow: none;
-}
-
-button.titlebutton {
-  margin: 4px;
-  border: none;
 }
 
 button.close.titlebutton:not(.appmenu) {
-  background-image: url("assets/titlebutton-close.png");
+  background-image: url("assets/close.png");
 }
 
 button.close.titlebutton:hover:not(.appmenu) {
-  background-color: shade(@headerbar_backdrop_color,1.2);
+  background-image: url("assets/close_hover.png");
 }
 
 button.maximize.titlebutton:not(.appmenu) {
-  background-image: url("assets/titlebutton-maximize.png");
+  background-image: url("assets/maximize.png");
 }
 
 button.maximize.titlebutton:backdrop:hover:not(.appmenu) {
-  background-color: shade(@headerbar_backdrop_color,1.2);
+  background-image: url("assets/maximize_hover.png");
 }
 
 button.minimize.titlebutton:not(.appmenu) {
-  background-image: url("assets/titlebutton-minimize.png");
+  background-image: url("assets/minimize.png");
 }
 
+button.minimize.titlebutton:hover,
+button.minimize.titlebutton:hover:not(.appmenu),
 button.minimize.titlebutton:backdrop:hover:not(.appmenu) {
-  background-color: shade(@headerbar_backdrop_color,1.2);
+  background-image: url("assets/minimize_hover.png");
 }
 
-.maximized headerbar button.titlebutton.maximize,
-.maximized .titlebar button.titlebutton.maximize {
-  background-image: url("assets/titlebutton-unmaximize.png");
+.maximized headerbar button.titlebutton.maximize:backdrop:hover:not(.appmenu),
+.maximized .titlebar button.titlebutton.maximize:backdrop:hover:not(.appmenu) {
+  background-image: url("assets/unmaximize.png");
+}
+
+.maximized headerbar button.titlebutton.maximize:backdrop:hover:not(.appmenu),
+.maximized .titlebar button.titlebutton.maximize:backdrop:hover:not(.appmenu) {
+  background-image: url("assets/unmaximize_hover.png");
 }
 """
         b_gtk4 = """
 
+
+windowcontrols > button {
+  min-width: 26px;
+  min-height: 26px;
+  padding: 4;
+}
+
+windowcontrols > button {
+  margin: 5px;
+}
+
+windowcontrols > button > image {
+  padding: 4;
+  border-radius: 10;
+  background-color: transparent;
+}
+
+windowcontrols > button.close,
+windowcontrols > button.maximize,
+windowcontrols > button.minimize {
+  background-color: transparent;
+  transition-property: background-color;
+  color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 1.5px;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+windowcontrols > button.close > image,
+windowcontrols > button.maximize > image,
+windowcontrols > button.minimize > image {
+  opacity: 0;
+}
+
+windowcontrols > button.close {
+  background-image: url("assets/close.png");
+}
+
+windowcontrols > button.close:hover {
+  background-image: url("assets/close_hover.png");
+  box-shadow: none;
+}
+
+windowcontrols > button.maximize {
+  background-image: url("assets/maximize.png");
+}
+
+windowcontrols > button.maximize:backdrop:hover {
+  background-image: url("assets/maximize_hover.png");
+}
+
+windowcontrols > button.minimize {
+  background-image: url("assets/minimize.png");
+}
+
+windowcontrols > button.minimize:hover,
+windowcontrols > button.minimize:backdrop:hover {
+  background-image: url("assets/minimize_hover.png");
+}
+
+.maximized headerbar windowcontrols button.maximize,
+.maximized .titlebar windowcontrols button.maximize {
+  background-image: url("assets/unmaximize.png");
+}
 
 """
 
