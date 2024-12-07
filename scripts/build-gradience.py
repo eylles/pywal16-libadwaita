@@ -195,12 +195,12 @@ b_gtk3: str = ""
 b_gtk4: str = ""
 if args.buttons:
     hover: str = lighten_color(col["col12"], 10)
-    b: str = "\n\n"
+    # b: str = "\n\n"
     if args.buttons == "fill":
         b_gtk3 = """
 
 /* GTK3 */
-button.titlebutton {
+button.titlebutton {{
     color: transparent;
     min-width: 2px;
     min-height: 2px;
@@ -209,30 +209,30 @@ button.titlebutton {
     margin: 0 5px;
     background-color: transparent;
     border: none;
-}
+}}
 
-button.titlebutton:hover {
+button.titlebutton:hover {{
     background-color: {h};
     opacity: 0.8;
-}
+}}
 
-button.titlebutton image {
+button.titlebutton image {{
     padding: 0;
-}
+}}
 
 button.titlebutton.close,
 button.titlebutton.maximize,
-button.titlebutton.minimize {
+button.titlebutton.minimize {{
     background-color: {c};
     border: none;
-}
+}}
 
 button.titlebutton.close:hover,
 button.titlebutton.maximize:hover,
-button.titlebutton.minimize:hover {
+button.titlebutton.minimize:hover {{
     background-color: {h};
     opacity: 0.8;
-}
+}}
 """
         b_gtk4 = """
 
@@ -283,177 +283,251 @@ windowcontrols > button.minimize:hover {{
     opacity: 0.8;
 }}
 """
+        b_gtk3 = b_gtk3.format(c=col["col12"], h=hover)
+        b_gtk4 = b_gtk4.format(c=col["col12"], h=hover)
     if args.buttons == "asset":
-        b = b + "headerbar button:not(.close):not(.maximize):not(.minimize) {{\n"
-        b = b + "  margin-top: 4px;\n"
-        b = b + "  margin-bottom: 4px;\n"
-        b = b + "  padding: 2px 4px;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "headerbar button.image-button {{\n"
-        b = b + "  min-width: 22px;\n"
-        b = b + "  padding-left: 2px;\n"
-        b = b + "  padding-right: 2px;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "headerbar button.toggle {{\n"
-        b = b + "  padding: 0;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "headerbar entry {{\n"
-        b = b + "  margin-top: 0px;\n"
-        b = b + "  margin-bottom: 0px;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button,\n"
-        b = b + "button.titlebutton:not(.appmenu) {{\n"
-        b = b + "  min-width: 38px;\n"
-        b = b + "  min-height: 38px;\n"
-        b = b + "  border-radius: 0;\n"
-        b = b + "  padding: 0;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols button.close,\n"
-        b = b + "windowcontrols button.maximize,\n"
-        b = b + "windowcontrols button.minimize {{\n"
-        b = b + "  margin: 0 -2px 0 0;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "button.titlebutton:not(.appmenu) {{\n"
-        b = b + "  margin: 0 -3px;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + ".titlebar .right {{\n"
-        b = b + "  margin-right: -3px;\n"
-        b = b + "}}\n"
-        b = b + ".titlebar .left {{\n"
-        b = b + "  margin-left: -3px;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols.end {{\n"
-        b = b + "  margin-right: -4px;\n"
-        b = b + "}}\n"
-        b = b + "windowcontrols.start {{\n"
-        b = b + "  margin-left: -4px;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button.close,\n"
-        b = b + "windowcontrols > button.maximize,\n"
-        b = b + "windowcontrols > button.minimize,\n"
-        b = b + "button.titlebutton.close,\n"
-        b = b + "button.titlebutton.maximize,\n"
-        b = b + "button.titlebutton.minimize {{\n"
-        b = b + "  background-color: transparent;\n"
-        b = b + "  transition-property: background-color;\n"
-        b = b + "  color: transparent;\n"
-        b = b + "  background-position: center;\n"
-        b = b + "  background-repeat: no-repeat;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button.close:backdrop:hover,\n"
-        b = b + "windowcontrols > button.maximize:backdrop:hover,\n"
-        b = b + "windowcontrols > button.minimize:backdrop:hover,\n"
-        b = b + "button.titlebutton.close:backdrop:hover,\n"
-        b = b + "button.titlebutton.maximize:backdrop:hover,\n"
-        b = b + "button.titlebutton.minimize:backdrop:hover {{\n"
-        b = b + "  color: transparent;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button.close:backdrop:not(:hover),\n"
-        b = b + "windowcontrols > button.maximize:backdrop:not(:hover),\n"
-        b = b + "windowcontrols > button.minimize:backdrop:not(:hover),\n"
-        b = b + "button.titlebutton.close:backdrop:not(:hover),\n"
-        b = b + "button.titlebutton.maximize:backdrop:not(:hover),\n"
-        b = b + "button.titlebutton.minimize:backdrop:not(:hover) {{\n"
-        b = b + "  opacity: 0.5;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button.maximize:hover,\n"
-        b = b + "windowcontrols > button.minimize:hover,\n"
-        b = b + "button.titlebutton.maximize:hover,\n"
-        b = b + "button.titlebutton.minimize:hover {{\n"
-        b = b + "  color: transparent;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button.close,\n"
-        b = b + "button.titlebutton.close {{\n"
-        b = b + "  background-image: url(\"assets/close.png\");\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button.close:hover,\n"
-        b = b + "button.titlebutton.close:hover {{\n"
-        b = b + "  background-image: url(\"assets/close_hover.png\");\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button.close:backdrop:hover,\n"
-        b = b + "button.titlebutton.close:backdrop:hover {{\n"
-        b = b + "  background-image: url(\"assets/close_hover.png\");\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button.maximize,\n"
-        b = b + "button.titlebutton.maximize {{\n"
-        b = b + "  background-image: url(\"assets/maximize.png\");\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button.maximize:hover,\n"
-        b = b + "button.titlebutton.maximize:hover {{\n"
-        b = b + "  background-image: url(\"assets/maximize_hover.png\");\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button.maximize:backdrop:hover,\n"
-        b = b + "button.titlebutton.maximize:backdrop:hover {{\n"
-        b = b + "  background-image: url(\"assets/maximize_hover.png\");\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button.minimize,\n"
-        b = b + "button.titlebutton.minimize {{\n"
-        b = b + "  background-image: url(\"assets/minimize.png\");\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button.minimize:hover,\n"
-        b = b + "button.titlebutton.minimize:hover {{\n"
-        b = b + "  background-image: url(\"assets/minimize_hover.png\");\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button.minimize:backdrop:hover,\n"
-        b = b + "button.titlebutton.minimize:backdrop:hover {{\n"
-        b = b + "  background-image: url(\"assets/minimize_hover.png\");\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + ".maximized headerbar button.titlebutton.maximize,\n"
-        b = b + ".maximized headerbar windowcontrols button.maximize,\n"
-        b = b + ".maximized .titlebar button.titlebutton.maximize,\n"
-        b = b + ".maximized .titlebar windowcontrols button.maximize {{\n"
-        b = b + "  background-image: url(\"assets/unmaximize.png\");\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + ".maximized headerbar button.titlebutton.maximize:hover,\n"
-        b = b + ".maximized headerbar windowcontrols button.maximize:hover,\n"
-        b = b + ".maximized .titlebar button.titlebutton.maximize:hover,\n"
-        b = b + ".maximized .titlebar windowcontrols button.maximize:hover {{\n"
-        b = b + "  background-image: url(\"assets/unmaximize_hover.png\");\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + ".maximized headerbar button.titlebutton.maximize:backdrop:hover,\n"
-        b = b + ".maximized headerbar windowcontrols button.maximize:backdrop:hover,\n"
-        b = b + ".maximized .titlebar button.titlebutton.maximize:backdrop:hover,\n"
-        b = b + ".maximized .titlebar windowcontrols button.maximize:backdrop:hover {{\n"
-        b = b + "  background-image: url(\"assets/unmaximize_hover.png\");\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button {{\n"
-        b = b + "  padding: 0;\n"
-        b = b + "}}\n"
-        b = b + "\n"
-        b = b + "windowcontrols > button > image {{\n"
-        b = b + "  padding: 0;\n"
-        b = b + "  border-radius: 0;\n"
-        b = b + "  background-color: transparent;\n"
-        b = b + "}}\n"
+        b_gtk3 = """
+
+button.titlebutton:not(.appmenu) {
+  min-width: 20px;
+  min-height: 20px;
+  padding: 0;
+}
+
+button.close.titlebutton:not(.appmenu),
+button.maximize.titlebutton:not(.appmenu),
+button.minimize.titlebutton:not(.appmenu) {
+  background-color: transparent;
+  transition-property: background-color;
+  color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 1.5px;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+button.close.titlebutton:not(.appmenu) > image,
+button.maximize.titlebutton:not(.appmenu) > image,
+button.minimize.titlebutton:not(.appmenu) > image {
+  opacity: 0;
+}
+
+button.maximize.titlebutton:hover:not(.appmenu),
+button.minimize.titlebutton:hover:not(.appmenu) {
+  background-color: @accent_bg_color;
+  box-shadow: none;
+}
+
+button.titlebutton {
+  margin: 4px;
+  border: none;
+}
+
+button.close.titlebutton:not(.appmenu) {
+  background-image: url("assets/titlebutton-close.png");
+}
+
+button.close.titlebutton:hover:not(.appmenu) {
+  background-color: shade(@headerbar_backdrop_color,1.2);
+}
+
+button.maximize.titlebutton:not(.appmenu) {
+  background-image: url("assets/titlebutton-maximize.png");
+}
+
+button.maximize.titlebutton:backdrop:hover:not(.appmenu) {
+  background-color: shade(@headerbar_backdrop_color,1.2);
+}
+
+button.minimize.titlebutton:not(.appmenu) {
+  background-image: url("assets/titlebutton-minimize.png");
+}
+
+button.minimize.titlebutton:backdrop:hover:not(.appmenu) {
+  background-color: shade(@headerbar_backdrop_color,1.2);
+}
+
+.maximized headerbar button.titlebutton.maximize,
+.maximized .titlebar button.titlebutton.maximize {
+  background-image: url("assets/titlebutton-unmaximize.png");
+}
+"""
+        b_gtk4 = """
+
+
+"""
+
+        b = """
+headerbar button:not(.close):not(.maximize):not(.minimize) {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 2px 4px;
+}
+
+headerbar button.image-button {
+  min-width: 22px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+headerbar button.toggle {
+  padding: 0;
+}
+
+headerbar entry {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+windowcontrols > button,
+button.titlebutton:not(.appmenu) {
+  min-width: 38px;
+  min-height: 38px;
+  border-radius: 0;
+  padding: 0;
+}
+
+windowcontrols button.close,
+windowcontrols button.maximize,
+windowcontrols button.minimize {
+  margin: 0 -2px 0 0;
+}
+
+button.titlebutton:not(.appmenu) {
+  margin: 0 -3px;
+}
+
+.titlebar .right {
+  margin-right: -3px;
+}
+.titlebar .left {
+  margin-left: -3px;
+}
+
+windowcontrols.end {
+  margin-right: -4px;
+}
+windowcontrols.start {
+  margin-left: -4px;
+}
+
+windowcontrols > button.close,
+windowcontrols > button.maximize,
+windowcontrols > button.minimize,
+button.titlebutton.close,
+button.titlebutton.maximize,
+button.titlebutton.minimize {
+  background-color: transparent;
+  transition-property: background-color;
+  color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+windowcontrols > button.close:backdrop:hover,
+windowcontrols > button.maximize:backdrop:hover,
+windowcontrols > button.minimize:backdrop:hover,
+button.titlebutton.close:backdrop:hover,
+button.titlebutton.maximize:backdrop:hover,
+button.titlebutton.minimize:backdrop:hover {
+  color: transparent;
+}
+
+windowcontrols > button.close:backdrop:not(:hover),
+windowcontrols > button.maximize:backdrop:not(:hover),
+windowcontrols > button.minimize:backdrop:not(:hover),
+button.titlebutton.close:backdrop:not(:hover),
+button.titlebutton.maximize:backdrop:not(:hover),
+button.titlebutton.minimize:backdrop:not(:hover) {
+  opacity: 0.5;
+}
+
+windowcontrols > button.maximize:hover,
+windowcontrols > button.minimize:hover,
+button.titlebutton.maximize:hover,
+button.titlebutton.minimize:hover {
+  color: transparent;
+}
+
+windowcontrols > button.close,
+button.titlebutton.close {
+  background-image: url("assets/close.png");
+}
+
+windowcontrols > button.close:hover,
+button.titlebutton.close:hover {
+  background-image: url("assets/close_hover.png");
+}
+
+windowcontrols > button.close:backdrop:hover,
+button.titlebutton.close:backdrop:hover {
+  background-image: url("assets/close_hover.png");
+}
+
+windowcontrols > button.maximize,
+button.titlebutton.maximize {
+  background-image: url("assets/maximize.png");
+}
+
+windowcontrols > button.maximize:hover,
+button.titlebutton.maximize:hover {
+  background-image: url("assets/maximize_hover.png");
+}
+
+windowcontrols > button.maximize:backdrop:hover,
+button.titlebutton.maximize:backdrop:hover {
+  background-image: url("assets/maximize_hover.png");
+}
+
+windowcontrols > button.minimize,
+button.titlebutton.minimize {
+  background-image: url("assets/minimize.png");
+}
+
+windowcontrols > button.minimize:hover,
+button.titlebutton.minimize:hover {
+  background-image: url("assets/minimize_hover.png");
+}
+
+windowcontrols > button.minimize:backdrop:hover,
+button.titlebutton.minimize:backdrop:hover {
+  background-image: url("assets/minimize_hover.png");
+}
+
+.maximized headerbar button.titlebutton.maximize,
+.maximized headerbar windowcontrols button.maximize,
+.maximized .titlebar button.titlebutton.maximize,
+.maximized .titlebar windowcontrols button.maximize {
+  background-image: url("assets/unmaximize.png");
+}
+
+.maximized headerbar button.titlebutton.maximize:hover,
+.maximized headerbar windowcontrols button.maximize:hover,
+.maximized .titlebar button.titlebutton.maximize:hover,
+.maximized .titlebar windowcontrols button.maximize:hover {
+  background-image: url("assets/unmaximize_hover.png");
+}
+
+.maximized headerbar button.titlebutton.maximize:backdrop:hover,
+.maximized headerbar windowcontrols button.maximize:backdrop:hover,
+.maximized .titlebar button.titlebutton.maximize:backdrop:hover,
+.maximized .titlebar windowcontrols button.maximize:backdrop:hover {
+  background-image: url("assets/unmaximize_hover.png");
+}
+
+windowcontrols > button {
+  padding: 0;
+}
+
+windowcontrols > button > image {
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+}
+"""
 
     # b = b.format(c=col["col12"], h=hover)
-    b_gtk3 = b_gtk3.format(c=col["col12"], h=hover)
-    b_gtk4 = b_gtk4.format(c=col["col12"], h=hover)
 
 css3 = css + b_gtk3
 css4 = css + b_gtk4
@@ -565,8 +639,8 @@ gradience_theme: dict = {
         }
     },
     "custom_css": {
-        "gtk4": css3,
-        "gtk3": css4,
+        "gtk4": css4,
+        "gtk3": css3,
     },
     "plugins": {}
 }
