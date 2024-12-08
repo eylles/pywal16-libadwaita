@@ -205,7 +205,7 @@ button.titlebutton {{
     min-width: 2px;
     min-height: 2px;
     border-radius: 100%;
-    padding: 0;
+    padding: 0px;
     margin: 0 5px;
     background-color: transparent;
     border: none;
@@ -217,7 +217,7 @@ button.titlebutton:hover {{
 }}
 
 button.titlebutton image {{
-    padding: 0;
+    padding: 0px;
 }}
 
 button.titlebutton.close,
@@ -242,12 +242,12 @@ windowcontrols > button {{
     min-width: 2px;
     min-height: 2px;
     border-radius: 100%;
-    padding: 0;
+    padding: 0px;
     margin: 0 5px;
 }}
 
 windowcontrols > button > image {{
-    padding: 0;
+    padding: 0px;
 }}
 
 button.titlebutton.close,
@@ -291,7 +291,7 @@ windowcontrols > button.minimize:hover {{
 button.titlebutton:not(.appmenu) {
   min-width: 26px;
   min-height: 26px;
-  padding: 4;
+  padding: 4px;
 }
 
 button.titlebutton {
@@ -363,7 +363,7 @@ button.minimize.titlebutton:backdrop:hover:not(.appmenu) {
 windowcontrols > button {
   min-width: 26px;
   min-height: 26px;
-  padding: 4;
+  padding: 4px;
 }
 
 windowcontrols > button {
@@ -371,8 +371,8 @@ windowcontrols > button {
 }
 
 windowcontrols > button > image {
-  padding: 4;
-  border-radius: 10;
+  padding: 4px;
+  border-radius: 10px;
   background-color: transparent;
 }
 
