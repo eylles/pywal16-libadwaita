@@ -88,3 +88,37 @@ if args.debug:
     # print("Vars:", data["variables"])
     for keys, values in data["variables"].items():
         print("{key: >24}: {value}".format(key=keys, value=values))
+
+search_kvconfig = {
+        "base": "#2e2e2e",
+        "text_focus": "white",
+        "button": "#4d4d4d",
+        "light": "#535353",
+        "mid_light": "#474747",
+        "dark": "#282828",
+        "mid": "#323232",
+        "highlight": "#696969",
+        "tooltip_text": "#efefef",
+        "highlight_text": "#ffffff",
+        "link": "#0057AE",
+        "visited": "#E040FB",
+        "text_normal": "#dfdfdf",
+        "text_title": "#787878",
+}
+
+replace_kvconfig = {
+        "base": data["variables"]["window_bg_color"],
+        "text_focus": data["variables"]["window_fg_color"],
+        "button": data["variables"]["shade_color"],
+        "light": data["variables"]["window_bg_color"],
+        "mid_light": data["variables"]["view_bg_color"],
+        "dark": data["variables"]["view_bg_color"],
+        "mid": data["variables"]["shade_color"],
+        "highlight": data["variables"]["accent_bg_color"],
+        "tooltip_text": data["variables"]["window_fg_color"],
+        "highlight_text": data["variables"]["view_fg_color"],
+        "link": data["variables"]["accent_color"],
+        "visited": data["variables"]["accent_fg_color"],
+        "text_normal": data["variables"]["window_fg_color"],
+        "text_title": data["variables"]["view_fg_color"],
+}
