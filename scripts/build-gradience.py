@@ -27,7 +27,7 @@ def darken_color(color: str, amount: int) -> str:
     ctup = hex_to_rgb(color)
     nctup = []
     for col in ctup:
-        nctup.append(int(col * (1 - (amount/100))))
+        nctup.append(max(int(col * (1 - (amount/100))), 0))
     return rgb_to_hex(nctup)
 
 
@@ -37,7 +37,7 @@ def lighten_color(color: str, amount: int) -> str:
     ctup = hex_to_rgb(color)
     nctup = []
     for col in ctup:
-        nctup.append(int(col + (255 - col) * (amount/100)))
+        nctup.append(min(int(col + (255 - col) * (amount/100)), 0))
     return rgb_to_hex(nctup)
 
 
