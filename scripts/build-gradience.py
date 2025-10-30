@@ -451,7 +451,7 @@ gradience_theme: dict = {
         "error_fg_color": col["col15"],
         "window_bg_color": col["col0"],
         "window_fg_color": col["col15"],
-        "view_bg_color": col["cole1"],
+        "view_bg_color": darken_color(col["col0"], 20),
         "view_fg_color": col["col15"],
         "headerbar_bg_color": col["col0"],
         "headerbar_fg_color": col["col15"],
