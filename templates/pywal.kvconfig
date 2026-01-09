@@ -78,12 +78,12 @@ tooltip_blur_radius=0
 [GeneralColors]
 window.color={color0}
 base.color={color0}
-alt.base.color=#{color8.lighten(10%)}
+alt.base.color={color8.lighten(10%)}
 button.color={color12}
-light.color=#{color8.darken(3%)}
-mid.light.color=#{color8.darken(5%)}
-dark.color=#{color0.lighten(2%)}
-mid.color=#{color0.lighten(3%)}
+light.color={color8.darken(3%)}
+mid.light.color={color8.darken(5%)}
+dark.color={color0.lighten(2%)}
+mid.color={color0.lighten(3%)}
 highlight.color={color12}
 inactive.highlight.color={color12}
 text.color={color15}
